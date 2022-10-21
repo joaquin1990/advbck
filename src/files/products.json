@@ -1,0 +1,22 @@
+[
+	{
+		"title": "Vela Nueva",
+		"price": "3330",
+		"thumbnail": "Direccion de Vela Nueva",
+		"description": "Description",
+		"stock": "20",
+		"id": 8,
+		"code": "bebcd410-30db-4012-a194-65af91617a76",
+		"date": "29/8/2022"
+	},
+	{
+		"title": "Vela Nueva",
+		"price": "3330",
+		"thumbnail": "Direccion de Vela Nueva",
+		"description": "Description",
+		"stock": "20",
+		"id": 9,
+		"code": "de176fd3-48e4-4456-8e4e-94302971230d",
+		"date": "29/8/2022"
+	}
+]

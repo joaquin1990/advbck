@@ -1,0 +1,1 @@
+- Ver si al carrito hay que ponerle date en vez de timestamp. 
