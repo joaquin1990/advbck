@@ -1,7 +1,7 @@
 import FSContainer from "./FSContainer.js";
 import fs from "fs";
 import { v4 as uuid } from "uuid";
-import __dirname from "../../utils.js";
+import __dirname from "../../__dirname.js";
 import moment from "moment";
 
 export default class Products extends FSContainer {

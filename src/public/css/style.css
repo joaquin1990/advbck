@@ -1,0 +1,24 @@
+.card {
+  width: 250px;
+  height: 300px;
+  box-shadow: 0 1.5px 1.5px 0 rgb(0 0 0 / 10%);
+}
+.card.card-admin {
+  height: 400px;
+}
+.card img {
+  height: 140px;
+}
+.card.card-admin p {
+  font-size: 0.8rem;
+}
+.card-button {
+  font-size: 0.8rem;
+  width: 45%;
+}
+.hidden-product-code {
+  display: none;
+}
+.detail-image {
+  height: 300px;
+}

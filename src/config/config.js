@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import __dirname from "../utils.js";
+import __dirname from "../__dirname.js";
 
 const mode = process.argv.slice(2)[0];
 dotenv.config({

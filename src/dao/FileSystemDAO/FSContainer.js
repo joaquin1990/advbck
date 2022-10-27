@@ -1,5 +1,5 @@
 import fs from "fs";
-import __dirname from "../../utils.js";
+import __dirname from "../../__dirname.js";
 
 // const path = __dirname + "/files/items.json";
 export default class FSContainer {

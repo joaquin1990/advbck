@@ -1,5 +1,5 @@
 import fs from "fs";
-import __dirname from "../utils.js";
+import __dirname from "../__dirname.js";
 import { v4 as uuid } from "uuid";
 import moment from "moment";
 

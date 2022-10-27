@@ -1,7 +1,7 @@
 import passport from "passport";
 import local from "passport-local";
-import usersService from "../models/Users.js";
-import { createHash, isValidPassword } from "../utils.js";
+import services from "../dao/index.js";
+import { createHash, isValidPassword } from "../utils/bcrypt.js";
 import GithubStrategy from "passport-github2";
 
 // We use passport to migrate all the register structure and login into just one file.
@@ -19,7 +19,7 @@ const initializePassport = () => {
           if (!name || !email || !password)
             return done(null, false, { message: "Incomplete form fields" });
           // Is the user already in the database?
-          const exists = await usersService.findOne({ email: email });
+          const exists = await services.usersService.findone({ email: email });
           // This is the unique field that i am requesting
           if (exists)
             return done(null, false, { message: "User already exists" });
@@ -29,7 +29,7 @@ const initializePassport = () => {
             email,
             password: createHash(password),
           };
-          let result = await usersService.create(newUser);
+          let result = await services.usersService.create(newUser);
           // If everything goes good with strategy:
           return done(null, result);
         } catch (error) {
@@ -47,7 +47,7 @@ const initializePassport = () => {
         try {
           if (!email || !password)
             return done(null, false, { message: "Incomplete login fields" });
-          let user = await usersService.findOne({ email: email });
+          let user = await services.usersService.findone({ email: email });
           if (!user)
             return done(null, false, { message: "Incorrect credentials" });
           if (!isValidPassword(user, password))
@@ -72,7 +72,7 @@ const initializePassport = () => {
         // Extract data from the profile:
         const { name, email } = profile._json;
         // Exists in database?:
-        let user = await usersService.findOne({ email: email });
+        let user = await services.usersService.findone({ email: email });
         if (!user) {
           // Create the userName
           let newUser = {
@@ -80,7 +80,7 @@ const initializePassport = () => {
             email,
             password: "", //This means it is not a normal authentication, it is a third party authentication.
           };
-          let result = await usersService.create(newUser);
+          let result = await services.usersService.create(newUser);
           return done(null, result);
         } else {
           // If we enter into this else, is because we finded the user:
@@ -96,7 +96,7 @@ const initializePassport = () => {
   });
 
   passport.deserializeUser(async (id, done) => {
-    let result = await usersService.findOne({ _id: id });
+    let result = await services.usersService.findone({ _id: id });
     return done(null, result);
   });
 };

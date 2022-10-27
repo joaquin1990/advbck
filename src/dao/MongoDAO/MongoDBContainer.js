@@ -3,17 +3,13 @@ import config from "../../config/config.js";
 
 export default class MongoDBContainer {
   constructor(collection, schema) {
-    mongoose.connect(
-      config.mongo.MONGO_URL,
-      (error) => {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Atlas DB connected");
-        }
+    mongoose.connect(config.mongo.MONGO_URL, (error) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Atlas DB connected");
       }
-      // "mongodb+srv://joaquingarese:1a2b3c@cluster0.dcv0epl.mongodb.net/?retryWrites=true&w=majority"
-    );
+    });
     this.model = mongoose.model(collection, schema);
   }
 
@@ -46,9 +42,12 @@ export default class MongoDBContainer {
   deleteAll = async () => {
     await this.model.deleteAll();
   };
-  save = async (element) => {
-    console.log(element);
-    let result = await this.model.create(element);
+  save = async (item) => {
+    let result = await this.model.create(item);
+    return result;
+  };
+  findone = async (item) => {
+    let result = (await this.model.findOne(item)) || null;
     return result;
   };
 }

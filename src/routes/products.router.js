@@ -1,6 +1,8 @@
 import { Router } from "express";
 import Contenedor from "../managers/productsContainer.js";
+import validateAdmin from "../middlewares/validateAdmin.js";
 import { validatePid2 } from "../middlewares/validatePid.js";
+import { uploader } from "../utils/uploader.js";
 import services from "../dao/index.js";
 
 const router = Router();
@@ -24,11 +26,44 @@ router.get("/:id", async (req, res) => {
 });
 
 // POST '/api/products' - recieves and adds a product
-router.post("/", async (req, res) => {
-  let product = req.body;
-  console.log(req.body);
-  res.send({ status: "succes", message: "Product Added" });
-  await services.productService.addProduct(product);
+router.post("/", uploader.single("file"), async (req, res) => {
+  // console.log("req.file.filename");
+  // console.log(req.file);
+  let newProduct = req.body;
+  newProduct.thumbnail = req.file.filename;
+  if (!req.file)
+    return res
+      .status(500)
+      .json({ status: "error", error: "Could not upload file" });
+  if (
+    !newProduct.title ||
+    !newProduct.price ||
+    !newProduct.description ||
+    !newProduct.stock
+  )
+    return res.status(400).send({
+      status: "error",
+      error: "Product name, price, description and stock are required",
+    });
+  if (
+    !req.body.title ||
+    !req.body.description ||
+    !req.body.thumbnail ||
+    !req.body.price ||
+    !req.body.stock
+  )
+    return res.status(400).send({
+      message:
+        "Product name, description, code, thumbnail, price, and stock are required",
+    });
+  if (!Number(req.body.price) || !Number(req.body.stock))
+    return res
+      .status(400)
+      .send({ message: "Product price and stock must be numbers" });
+  console.log("newProduct");
+  console.log(newProduct);
+  await services.productService.addProduct(newProduct);
+  res.send({ status: "success", message: "Product Added" });
 });
 
 //PUT '/api/products/:id' -> recieves and updates a product
