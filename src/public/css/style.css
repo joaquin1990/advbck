@@ -8,6 +8,7 @@
 }
 .card img {
   height: 140px;
+  object-fit: contain;
 }
 .card.card-admin p {
   font-size: 0.8rem;
@@ -21,4 +22,5 @@
 }
 .detail-image {
   height: 300px;
+  
 }

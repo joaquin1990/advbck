@@ -2,6 +2,7 @@
 console.log("Entra al JS");
 const newProductForm = document.getElementById("newProductForm");
 
+// Form to upload new products:
 newProductForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(newProductForm);
@@ -39,14 +40,14 @@ const updateProductForm = document.getElementById("updateProductForm");
 
 updateProductForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("Entra al JS del form");
-  const formData = new FormData(updateProductForm);
+  const formDataPut = new FormData(updateProductForm);
   fetch("/api/products", {
     method: "PUT",
-    body: formData,
+    body: formDataPut,
   })
     .then((res) => res.json())
     .then((res) => {
+      console.log(res);
       if (res.status === "success") {
         Swal.fire({
           icon: "success",
@@ -68,8 +69,6 @@ updateProductForm.addEventListener("submit", (e) => {
       }
     });
 });
-
-/* Listener del socket para actualizar lista de productos */
 
 /* Orden de hacer fetch de productos */
 fetch("/api/products", {
@@ -132,125 +131,3 @@ fetch("/api/products", {
       productListContainer.innerHTML = "<h1>NO PRODUCTS FOUND</h1>";
     }
   });
-
-/* Handler para los botones remove */
-
-/* Informacion de que otro usuario ha agregado un nuevo producto */
-// socket.on("newProduct", () => {
-//   Swal.fire({
-//     icon: "info",
-//     text: "New product has been added",
-//     toast: true,
-//     position: "top-right",
-//     timer: 2000,
-//   });
-// });
-
-/* Informacion de que otro usuario ha editado un producto */
-// socket.on("editedProduct", () => {
-//   Swal.fire({
-//     icon: "info",
-//     text: "A product has just been edited",
-//     toast: true,
-//     position: "top-right",
-//     timer: 2000,
-//   });
-// });
-
-/* Informacion de que otro usuario ha elimminado un producto */
-// socket.on("deletedProduct", () => {
-//   Swal.fire({
-//     icon: "info",
-//     text: "A product has just been deleted",
-//     toast: true,
-//     position: "top-right",
-//     timer: 2000,
-//   });
-// });
-
-/* Listeners del socket para el chat */
-
-/* Informacion de que un nuevo usuario esta en linea */
-// socket.on("newUser", (userId) => {
-//   if (email) {
-//     Swal.fire({
-//       text: "User " + userId + " is online",
-//       toast: true,
-//       position: "top-right",
-//       timer: 2000,
-//     });
-//   }
-// });
-
-// const chatBox = document.getElementById("chatBox");
-
-// function padTo2Digits(num) {
-//   return num.toString().padStart(2, "0");
-// }
-
-// function formatDate(date) {
-//   return [
-//     padTo2Digits(date.getDate()),
-//     padTo2Digits(date.getMonth() + 1),
-//     date.getFullYear(),
-//   ].join("/");
-// }
-
-/* Event Listeners del chatBox */
-// chatBox.addEventListener("keyup", (evt) => {
-//   if (evt.key === "Enter") {
-//     if (chatBox.value.trim().length > 0) {
-//       socket.emit("message", {
-//         author: {
-//           email: email,
-//           first_name: firstName,
-//           last_name: lastName,
-//           age: age,
-//           alias: alias,
-//           avatar: avatarURL,
-//         },
-//         message: chatBox.value,
-//         date: new Date().toLocaleDateString(),
-//         time: new Date().toLocaleTimeString(),
-//       });
-//       chatBox.value = "";
-//     }
-//   }
-// });
-
-/*Listeners del socket */
-// socket.on("log", (data) => {
-//   const author = new normalizr.schema.Entity(
-//     "authors",
-//     {},
-//     { idAttribute: "email" }
-//   );
-//   const message = new normalizr.schema.Entity(
-//     "messages",
-//     {
-//       author: author,
-//     },
-//     { idAttribute: "_id" }
-//   );
-//   const chat = new normalizr.schema.Entity("chats", {
-//     chats: [message],
-//   });
-//   const denormalizedData = normalizr.denormalize(
-//     data.result,
-//     chat,
-//     data.entities
-//   );
-//   const chatsArray = denormalizedData.chats;
-//   let log = document.getElementById("log");
-//   let messages = "";
-//   chatsArray?.forEach((entry) => {
-//     const message = entry._doc;
-//     const author = message.author;
-//     const messageToAdd =
-//       email === author.email ?
-//          `<div class="border border-1 rounded border-primary bg-primary m-1 p-2 align-self-end" style="width: 200px;"><span><img style="border-radius: 50%; width: 30px; height: 30px; object-fit: contain; background-color: white" src='${author.avatar}' alt='user avatar'></span><br><span style="width: 200px;"><b>${author.alias}:</b> <i>${message.message}</i><br><small style="color: brown;">${message.date}</small><br><small style="color: brown;">${message.time}</small></span></div>`
-//         : `<div class="border border-1 rounded border-success bg-success m-1 p-2 align-self-start" style="width: 200px;"><span><img style="border-radius: 50%; width: 30px; height: 30px; object-fit: contain; background-color: white" src='${author.avatar}' alt='user avatar'></span><br><span style="width: 200px;"><b>${author.alias}:</b> <i>${message.message}</i><br><small style="color: brown;">${message.date}</small><br><small style="color: brown;">${message.time}</small></span></div>`;
-//     messages += messageToAdd;
-//   });
-//   log.innerHTML = messages;
-// });

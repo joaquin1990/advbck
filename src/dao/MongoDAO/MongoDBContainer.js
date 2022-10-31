@@ -42,12 +42,23 @@ export default class MongoDBContainer {
   deleteAll = async () => {
     await this.model.deleteAll();
   };
+
   save = async (item) => {
     let result = await this.model.create(item);
     return result;
   };
+
   findone = async (item) => {
     let result = (await this.model.findOne(item)) || null;
     return result;
+  };
+
+  getByCode = async (code) => {
+    try {
+      let result = await this.model.find({ code: code });
+      return result[0];
+    } catch (error) {
+      console.log("Cannot read document. Error: ", error);
+    }
   };
 }

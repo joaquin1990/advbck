@@ -27,8 +27,6 @@ router.get("/:id", async (req, res) => {
 
 // POST '/api/products' - recieves and adds a product
 router.post("/", uploader.single("file"), async (req, res) => {
-  // console.log("req.file.filename");
-  // console.log(req.file);
   let newProduct = req.body;
   newProduct.thumbnail = req.file.filename;
   if (!req.file)
@@ -67,10 +65,22 @@ router.post("/", uploader.single("file"), async (req, res) => {
 });
 
 //PUT '/api/products/:id' -> recieves and updates a product
-router.put("/:pid", validatePid2, async (req, res) => {
+// router.put("/", validatePid2, uploader.single("file"), async (req, res) => {
+router.put("/", uploader.single("file"), async (req, res) => {
   try {
+    let productToModify = await services.productService.getByCode(
+      req.body.code
+    );
+    console.log(productToModify);
+    if (!req.body.code) {
+      return res.status(400).send({ message: "Must put a product code" });
+    }
+    if (!productToModify) {
+      res.status(400).send({
+        message: `Product code: ${req.body.code} does not match any product`,
+      });
+    }
     req.body.id = req.params.pid;
-    console.log(req.body);
     await services.productService.update(req.body);
     res.send({ status: "success", message: "successfully saved" });
   } catch (error) {
