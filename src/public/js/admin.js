@@ -80,7 +80,7 @@ fetch("/api/products", {
     productListContainer.innerHTML = "";
     if (products.length) {
       productListContainer.innerHTML +=
-        '<h2 class="w-100 text-center">Current Products in Store</h2>';
+        '<h2 class="w-100 text-center">Products in Store:</h2>';
       products.forEach((product) => {
         const card = `
           <div class="card card-admin d-flex flex-column align-items-center p-2">

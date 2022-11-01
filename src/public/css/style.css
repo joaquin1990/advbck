@@ -1,18 +1,73 @@
+.title-style {
+  color: rgb(154, 139, 87);
+}
+/* .admin-style {
+  margin-left: ;
+} */
+.nav-left-items {
+  margin-left: 60%;
+}
+
+.navDeco {
+  background-color: rgb(246, 240, 218);
+  height: 13vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.btn-signOut-style {
+  background-color: rgb(195, 201, 154);
+  cursor: pointer;
+
+  /* margin-left: 50%; */
+}
+
+.btn-style0 {
+  background-color: rgb(195, 201, 154);
+  width: 120px;
+}
+
+.btn-style {
+  background-color: rgb(195, 201, 154);
+  display: block;
+  margin: auto;
+  width: 120px;
+}
+
+.footerStyle {
+  background-color: rgb(246, 240, 218);
+  width: 100%;
+  bottom: 0;
+  font-size: 25px;
+  margin-top: 5%;
+}
+
+.login-style {
+  margin-left: 60%;
+  margin-right: 20px;
+}
+
 .card {
   width: 250px;
   height: 300px;
   box-shadow: 0 1.5px 1.5px 0 rgb(0 0 0 / 10%);
 }
+
 .card.card-admin {
   height: 400px;
 }
+
 .card img {
   height: 140px;
   object-fit: contain;
 }
+
 .card.card-admin p {
   font-size: 0.8rem;
 }
+
 .card-button {
   font-size: 0.8rem;
   width: 45%;
@@ -22,5 +77,4 @@
 }
 .detail-image {
   height: 300px;
-  
 }

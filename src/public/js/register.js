@@ -18,11 +18,6 @@ registerForm.addEventListener("submit", (e) => {
   console.log(data);
   let obj = {};
   data.forEach((value, key) => (obj[key] = value));
-  if (document.querySelector("#adminCheckbox").checked) {
-    obj = { ...obj, admin: true };
-  } else {
-    obj = { ...obj, admin: false };
-  }
   fetch("api/sessions/register", {
     method: "POST",
     body: JSON.stringify(obj),

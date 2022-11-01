@@ -29,7 +29,11 @@ const initializePassport = () => {
             email,
             password: createHash(password),
           };
-          let result = await services.usersService.create(newUser);
+          const cart = await services.cartService.newCart();
+          let cartId = cart._id;
+          console.log(cartId);
+          newUser.cart = cartId;
+          let result = await services.usersService.save(newUser);
           // If everything goes good with strategy:
           return done(null, result);
         } catch (error) {
@@ -80,7 +84,7 @@ const initializePassport = () => {
             email,
             password: "", //This means it is not a normal authentication, it is a third party authentication.
           };
-          let result = await services.usersService.create(newUser);
+          let result = await services.usersService.save(newUser);
           return done(null, result);
         } else {
           // If we enter into this else, is because we finded the user:

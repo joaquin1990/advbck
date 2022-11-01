@@ -36,7 +36,6 @@ router.post(
     if (req.user.admin) {
       res.redirect("/admin");
     } else {
-      console.log("Entro al else de las sessions y se fue al current!");
       res.redirect("/current");
     }
   }

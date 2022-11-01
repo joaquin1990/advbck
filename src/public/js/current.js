@@ -16,8 +16,8 @@ fetch("/api/products", {
               <p class="text-center">Stock: ${product.stock}</p>
               <p class="hidden-product-code">${product.code}</p>
               <div class="w-100 d-flex flex-row justify-content-between align-items-center">
-                <button class="card-button btn btn-primary btn-sm">Add to Cart</button>
-                <button type="button" class="card-button detail-button btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#product-detail-modal">Product Details</button>
+                <button class="card-button btn btn-primary ">Add to Cart</button>
+                <button type="button" class="card-button detail-button btn btn-success " data-bs-toggle="modal" data-bs-target="#product-detail-modal">Product Details</button>
               </div>
             </div>
           </div>

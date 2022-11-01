@@ -1,41 +1,24 @@
-<div style="min-height: 100vh;" class="d-flex flex-column">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-2">
-    <a class="navbar-brand px-2" href="#">Beer Store</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+<div class="d-flex flex-column" style="min-height: 100vh;">
+  <nav class="navDeco navbar px-2">
+    <a class="navbar-brand px-2 title-style" href="#">Claire</a>
+    <span class="">ADMIN PANEL</span>
+    <span
+      class="nav-left-items navbar-text d-flex flex-column flex-lg-row align-items-lg-center gap-2"
     >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto text-secondary">
-        <li class="nav-item active d-lg-flex align-items-lg-center">
-          <span>Admin control panel</span>
-        </li>
-      </ul>
-      <span
-        class="navbar-text d-flex flex-column flex-lg-row align-items-lg-center gap-2"
-      >
-        <span class="px-lg-2">User: {{user.name}}</span>
-        {{#if user.email}}
-          <span class="px-lg-2">Email: {{user.email}}</span>
-        {{/if}}
-        <a href="/api/sessions/logout" class="px-lg-2"><button
-            class="btn btn-warning btn-sm"
-          >Logout</button></a>
-      </span>
-    </div>
+      <span class="admin-style">User: {{user.name}}</span>
+      {{#if user.email}}
+        <span class="">Email: {{user.email}}</span>
+      {{/if}}
+      <a href="/api/sessions/logout" class="px-lg-2"><button
+          class="btn btn-signOut-style"
+        >Sign Out</button></a>
+    </span>
   </nav>
-  <main class="container flex-grow-1 mt-4">
+  <main class="container mt-5">
     <section>
-      <div class="container-lg d-flex flex-column align-items-center">
-        <div class="d-flex flex-column align-items-center">
-          <h2>LOAD NEW PRODUCT</h2>
+      <div class="d-flex flex-column w-50">
+        <div class="d-flex flex-column">
+          <h5 class="me-5">LOAD PRODUCTS: </h5>
           <form id="newProductForm">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
@@ -71,18 +54,18 @@
             <div class="mb-3">
               <input type="file" class="form-control" id="file" name="file" />
             </div>
-            <button type="submit" class="btn btn-success">Add Product</button>
+            <button type="submit" class="btn btn-style">Add</button>
           </form>
         </div>
       </div>
     </section>
     <section class="mt-4">
-      <div class="container-lg d-flex flex-column align-items-center">
-        <div class="d-flex flex-column align-items-center">
-          <h2>EDIT EXISTING PRODUCT</h2>
+      <div class="d-flex flex-column w-50">
+        <div class="d-flex flex-column">
+          <h5 class="me-5">MODIFY A PRODUCT:</h5>
           <form id="updateProductForm">
             <div class="mb-3">
-              <label for="code" class="form-label">Code [Mandatory]</label>
+              <label for="code" class="form-label">Product Code </label>
               <input
                 required
                 type="text"
@@ -135,7 +118,7 @@
                 name="file"
               />
             </div>
-            <button type="submit" class="btn btn-success">Update Product</button>
+            <button type="submit" class="btn btn-style">Update</button>
           </form>
         </div>
       </div>
@@ -146,28 +129,46 @@
         class="container-lg d-flex flex-wrap justify-content-center gap-4"
       ></div>
     </section>
-    <section class="mt-4">
-      <div class="container-lg d-flex flex-column align-items-center">
-        <h2 class="my-2">Store Chat</h2>
-        <div
-          style="height: 500px;"
-          class="border border-3 border-secondary rounded container-sm d-flex flex-column justify-content-end align-items-center"
-        >
-          <div
-            style="height: 400px; overflow-y: auto;"
-            class="w-75 d-flex flex-column justify-content-end align-items-start"
-            id="log"
-          ></div>
-          <input
-            class="m-2 w-100 h-25 border border-3 border-primary rounded align-self-center"
-            id="chatBox"
-          />
-        </div>
-      </div>
-    </section>
   </main>
-  <footer class="container-fluid d-flex justify-content-center mt-4">
-    <p>Joaquin Garese © 2022 Todos los derechos reservados</p>
+  <footer class="footerStyle text-black py-4">
+    <div class="container">
+      <nav class="row">
+        <p
+          class="col-12 col-lg-3 text-reset text-uppercase d-flex justify-content-center justify-content-lg-start"
+        >
+          CLAIRE
+        </p>
+        <ul
+          class="col-lg-9 col-sm-12 list-unstyled d-flex justify-content-center justify-content-lg-end"
+        >
+          <li class="font-weight-bold text-uppercase"></li>
+          <li class="d-flex justify-content-between">
+            <p href="https://www.facebook.com/" class="fs-5 m-2">
+              <u>
+                <BsFacebook />
+                /CLAIRE
+              </u>
+            </p>
+            <p href="https://www.instagram.com/" class="fs-5 m-2">
+              <u>
+                <BsInstagram />
+                /CLAIRE
+              </u>
+            </p>
+            <p href="https://web.whatsapp.com/" class="fs-5 m-2">
+              <u>
+                <ImWhatsapp />
+                099741112
+              </u>
+            </p>
+          </li>
+        </ul>
+        <hr class="lineaHr" />
+        <p class="text-center fs-5">
+          &copy; 2022 All Rights Reserved &reg; Claire & Co.
+        </p>
+      </nav>
+    </div>
   </footer>
 </div>
 
